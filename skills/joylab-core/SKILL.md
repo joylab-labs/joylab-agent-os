@@ -39,8 +39,14 @@ A substantial output should, where relevant, include:
 
 ## Project execution standard
 Prefer small verified increments over large rewrites.
-Default lifecycle:
+
+Use the root `AGENTS.md` Effort Router to select the smallest safe lifecycle.
+The full lifecycle below is a high-impact path, not a mandatory path for trivial work:
+
 SPEC → PLAN → IMPLEMENT → TEST → REVIEW → REGRESSION → RELEASE GATE
+
+S0–S2 work should use the shorter execution paths defined in `AGENTS.md`.
+S3–S4 work should preserve the required QA, GOLD, rollback, and production gates.
 
 Status vocabulary:
 - PASS: acceptance criteria are met with evidence.

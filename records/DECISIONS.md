@@ -31,3 +31,9 @@ Reason: Reduce ambiguous completion claims and support reliable handoff.
 Status: LOCKED
 Decision: Do not store secrets, credentials, customer-level data, restricted employer information, health data, or other sensitive personal data in the global baseline repository.
 Reason: The baseline is meant to be widely reusable and may be public.
+
+## D-2026-09-26-007 — Risk-adjusted agent operating system
+Status: LOCKED
+Decision: Use root `AGENTS.md` as the canonical JoyLab agent operating system. Route work through rule precedence and S0–S4 effort classification so reversible low-risk work uses a shorter path while high-impact work preserves QA, GOLD, rollback, and production safeguards.
+Reason: Reduce prompting debt and unnecessary approval/process overhead without weakening safety, data integrity, or completion evidence.
+
