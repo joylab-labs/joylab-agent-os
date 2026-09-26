@@ -27,8 +27,8 @@ This dashboard tracks the first five repositories selected for JoyLab Prompt Arc
 | joylab-agent-os | YES | YES | YES | YES | YES | Global Agent OS V1 is canonical. |
 | joylab-command-center | YES | YES | YES | YES | YES | Local router + implementation-status cleanup merged. |
 | joylab-publishing-os | YES | YES | YES | YES | YES | Contract Router V1 merged after full Build + contract checks passed. |
-| joylab-content-os | YES | NO | AUDIT PR | PENDING | NO | Audit PR #1 open; cleanup not yet applied. |
-| leaderdesk | YES | NO | AUDIT PR | PENDING | NO | Audit PR #1 open; cleanup not yet applied. |
+| joylab-content-os | YES | NO | AUDIT MERGED | PENDING | PARTIAL | Audit merged; cleanup/router not yet applied. |
+| leaderdesk | YES | NO | AUDIT MERGED | PENDING | PARTIAL | Audit merged; cleanup/router not yet applied. |
 
 ## Coverage
 
@@ -126,7 +126,7 @@ It is fully adopted only when:
 
 ## Next sequence
 
-1. Merge Content OS audit PR, then open a cleanup PR.
-2. Merge LeaderDesk audit PR, then open a cleanup PR.
+1. Open Content OS cleanup/router PR.
+2. Open LeaderDesk cleanup/router PR.
 3. Recalculate adoption coverage after both routers land.
 4. Expand the same scorecard to the next JoyLab repositories only after the first-wave pattern is stable.
