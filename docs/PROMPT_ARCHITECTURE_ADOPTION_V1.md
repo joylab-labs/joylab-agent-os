@@ -27,8 +27,8 @@ This dashboard tracks the first five repositories selected for JoyLab Prompt Arc
 | joylab-agent-os | YES | YES | YES | YES | YES | Global Agent OS V1 is canonical. |
 | joylab-command-center | YES | YES | YES | YES | YES | Local router + implementation-status cleanup merged. |
 | joylab-publishing-os | YES | YES | YES | YES | YES | Contract Router V1 merged after full Build + contract checks passed. |
-| joylab-content-os | YES | NO | AUDIT MERGED | PENDING | PARTIAL | Audit merged; cleanup/router not yet applied. |
-| leaderdesk | YES | NO | AUDIT MERGED | PENDING | PARTIAL | Audit merged; cleanup/router not yet applied. |
+| joylab-content-os | YES | YES | YES | YES | YES | Local router + SPEC/source-of-truth cleanup merged; post-merge Tests passed. |
+| leaderdesk | YES | YES | YES | YES* | YES | Local router + migration-status cleanup merged. Tests and web/Windows build passed; artifact upload was blocked by GitHub Actions storage quota after build. |
 
 ## Coverage
 
@@ -38,19 +38,17 @@ This dashboard tracks the first five repositories selected for JoyLab Prompt Arc
 All first-wave repositories have been inspected and have a documented Prompt Debt assessment or canonical architecture review.
 
 ### Router merged to main
-3 / 5 repositories = **60%**
+5 / 5 repositories = **100%**
 
 Merged:
 - joylab-agent-os
 - joylab-command-center
 - joylab-publishing-os
-
-Pending:
-- joylab-content-os — cleanup not started
-- leaderdesk — cleanup not started
+- joylab-content-os
+- leaderdesk
 
 ### Full cleanup + verification merged
-3 / 5 repositories = **60%**
+5 / 5 repositories = **100%***
 
 The current completion definition for “fully adopted” is:
 - audit complete
@@ -71,27 +69,27 @@ Current action:
 Contract Router V1 merged to main; monitor future contract-routing drift.
 
 ### joylab-content-os
-Risk class: source-of-truth accessibility / status drift
+Status: first-wave adoption complete.
 
-Main issues:
-- declared implementation source of truth is absent from repository
-- SPEC current-state marker conflicts with README
-- universal Unit + Gold + Regression wording is over-broad for trivial/docs changes
-
-Next action:
-create local AGENTS router and repair SPEC status without weakening HR-01~HR-05.
+Resolved:
+- local AGENTS router added
+- SPEC promoted to accessible repository-local execution source
+- stale current-state marker removed
+- verification policy scoped by effort without weakening HR-01~HR-05
+- post-merge Tests passed.
 
 ### leaderdesk
-Risk class: routing / migration-status drift
+Status: first-wave prompt architecture adoption complete.
 
-Main issues:
-- no local router
-- migration sequence appears partially implemented while freeze wording remains broad
-- Mobile GOLD and PC GOLD need separate routing
-- release automation behavior needs a separate operational-policy review
+Resolved:
+- local AGENTS router added
+- Mobile / PC / migration / release scopes separated
+- dry-run migration implementation reflected in status docs
+- blanket feature freeze narrowed without weakening data-integrity safeguards
 
-Next action:
-create local AGENTS router, then update migration-status wording using repository evidence.
+Operational follow-up:
+- main-push release automation still deserves a separate policy review
+- the post-merge workflow reached passing tests, web build, and Windows installer build, then failed at artifact upload because GitHub Actions artifact storage quota was exhausted; this is tracked as infrastructure capacity, not a prompt-architecture regression.
 
 ## Architecture target
 
@@ -126,7 +124,12 @@ It is fully adopted only when:
 
 ## Next sequence
 
-1. Open Content OS cleanup/router PR.
-2. Open LeaderDesk cleanup/router PR.
-3. Recalculate adoption coverage after both routers land.
-4. Expand the same scorecard to the next JoyLab repositories only after the first-wave pattern is stable.
+1. First-wave Prompt Architecture V1 adoption is complete across all 5 repositories.
+2. Resolve the separate LeaderDesk GitHub Actions artifact-storage quota issue.
+3. Review LeaderDesk main-push release creation policy separately from prompt cleanup.
+4. Expand the scorecard to the next JoyLab repositories only after this first-wave pattern remains stable.
+
+
+## Verification note
+
+`YES*` for LeaderDesk means the cleanup itself is verified by successful dependency install, audit, tests, web build, and Windows installer build on the post-merge main workflow. The workflow's final artifact-upload step failed because the repository/account GitHub Actions artifact storage quota was exhausted. That quota failure did not invalidate the documentation/router changes, but it remains an operational release-pipeline blocker that must be resolved separately.
