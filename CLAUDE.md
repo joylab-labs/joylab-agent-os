@@ -1,10 +1,10 @@
 # Claude Bootstrap for JoyLab
 
-Before substantial JoyLab work:
-1. Read `skills/joylab-core/SKILL.md`.
-2. Read `records/BASELINE.md`.
-3. Read relevant locked entries in `records/DECISIONS.md`.
-4. Read the target project's local specification and task files.
-5. Use the local project rules when they are more specific.
+Use `AGENTS.md` as the canonical operating system and precedence source.
 
-Do not rely on prior chat context as the only durable source of truth.
+Before substantial JoyLab work:
+1. Read `AGENTS.md`.
+2. Follow its mandatory bootstrap.
+3. Load project-local instructions and on-demand skills only when relevant.
+
+Do not duplicate global operating rules in this file. Model-specific guidance belongs here only when Claude requires behavior not covered by `AGENTS.md`.
