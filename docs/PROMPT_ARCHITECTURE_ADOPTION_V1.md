@@ -26,7 +26,7 @@ This dashboard tracks the first five repositories selected for JoyLab Prompt Arc
 |---|---:|---:|---:|---:|---:|---|
 | joylab-agent-os | YES | YES | YES | YES | YES | Global Agent OS V1 is canonical. |
 | joylab-command-center | YES | YES | YES | YES | YES | Local router + implementation-status cleanup merged. |
-| joylab-publishing-os | YES | PR OPEN | PR OPEN | PENDING | PARTIAL | Audit merged; Contract Router V1 is in PR #336. |
+| joylab-publishing-os | YES | YES | YES | YES | YES | Contract Router V1 merged after full Build + contract checks passed. |
 | joylab-content-os | YES | NO | AUDIT PR | PENDING | NO | Audit PR #1 open; cleanup not yet applied. |
 | leaderdesk | YES | NO | AUDIT PR | PENDING | NO | Audit PR #1 open; cleanup not yet applied. |
 
@@ -38,19 +38,19 @@ This dashboard tracks the first five repositories selected for JoyLab Prompt Arc
 All first-wave repositories have been inspected and have a documented Prompt Debt assessment or canonical architecture review.
 
 ### Router merged to main
-2 / 5 repositories = **40%**
+3 / 5 repositories = **60%**
 
 Merged:
 - joylab-agent-os
 - joylab-command-center
+- joylab-publishing-os
 
 Pending:
-- joylab-publishing-os — PR #336
 - joylab-content-os — cleanup not started
 - leaderdesk — cleanup not started
 
 ### Full cleanup + verification merged
-2 / 5 repositories = **40%**
+3 / 5 repositories = **60%**
 
 The current completion definition for “fully adopted” is:
 - audit complete
@@ -68,7 +68,7 @@ Main issue:
 many valid specialized contracts exist, but agents need a local task-to-contract router.
 
 Current action:
-Contract Router V1 PR #336.
+Contract Router V1 merged to main; monitor future contract-routing drift.
 
 ### joylab-content-os
 Risk class: source-of-truth accessibility / status drift
@@ -126,8 +126,7 @@ It is fully adopted only when:
 
 ## Next sequence
 
-1. Finish and merge Publishing OS PR #336 after CI is green.
-2. Merge Content OS audit PR, then open a cleanup PR.
-3. Merge LeaderDesk audit PR, then open a cleanup PR.
-4. Recalculate adoption coverage.
-5. Expand the same scorecard to the next JoyLab repositories only after the first-wave pattern is stable.
+1. Merge Content OS audit PR, then open a cleanup PR.
+2. Merge LeaderDesk audit PR, then open a cleanup PR.
+3. Recalculate adoption coverage after both routers land.
+4. Expand the same scorecard to the next JoyLab repositories only after the first-wave pattern is stable.
