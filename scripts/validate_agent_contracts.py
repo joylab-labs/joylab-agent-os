@@ -27,11 +27,18 @@ def validate(schema_path, files):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--failure", action="store_true")
+    kind = p.add_mutually_exclusive_group()
+    kind.add_argument("--failure", action="store_true")
+    kind.add_argument("--evidence", action="store_true")
     p.add_argument("files", nargs="+")
     args = p.parse_args()
-    schema = ROOT / "schemas" / ("failure_packet.schema.json" if args.failure else "agent_contract.schema.json")
-    raise SystemExit(validate(schema, args.files))
+    if args.failure:
+        schema_name = "failure_packet.schema.json"
+    elif args.evidence:
+        schema_name = "evidence_contract.schema.json"
+    else:
+        schema_name = "agent_contract.schema.json"
+    raise SystemExit(validate(ROOT / "schemas" / schema_name, args.files))
 
 if __name__ == "__main__":
     main()
