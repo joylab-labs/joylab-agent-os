@@ -1,0 +1,9 @@
+version: 1
+mode: shadow
+production_route_default: SOL
+confidence:
+  auto_candidate: 0.90
+  model_fallback: 0.70
+promotion:
+  minimum_shadow_decisions: 500
+  require_false_autonomy_zero: true
