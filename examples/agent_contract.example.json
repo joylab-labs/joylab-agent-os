@@ -1,0 +1,76 @@
+{
+  "contract_version": "1.0",
+  "agent_id": "example-readonly-research",
+  "responsibility": "Track approved sources for material changes.",
+  "goal": {
+    "desired_state": "Meaningful changes are reported with inspectable evidence."
+  },
+  "inputs": {
+    "allowed_sources": [
+      "approved primary sources"
+    ],
+    "excluded_sources": [
+      "unverified social posts"
+    ],
+    "time_range": null,
+    "accounts_or_workspaces": []
+  },
+  "state": {
+    "current_state_source": "latest verified snapshot",
+    "previous_state_source": "previous verified snapshot",
+    "comparison_required": true
+  },
+  "trigger": {
+    "type": "schedule",
+    "timezone": "Asia/Seoul",
+    "schedule": "0 8 * * 1-5",
+    "event_source": null,
+    "event_name": null,
+    "registration_verified": null,
+    "follow_up_condition": null
+  },
+  "actions": {
+    "allowed": [
+      "read",
+      "compare",
+      "draft report"
+    ],
+    "prohibited": [
+      "publish",
+      "delete",
+      "purchase"
+    ]
+  },
+  "approval": {
+    "required_for": [
+      "external publication"
+    ]
+  },
+  "evidence": {
+    "required_outputs": [
+      "source links",
+      "change summary"
+    ]
+  },
+  "failure_policy": {
+    "retry_limit": 2,
+    "fallback": "preserve last valid snapshot",
+    "escalation": "emit failure packet"
+  },
+  "stop": {
+    "conditions": [
+      "end date reached",
+      "operator stop"
+    ],
+    "end_date": null,
+    "offboarding": [
+      "cancel schedule",
+      "preserve final report"
+    ]
+  },
+  "reporting": {
+    "destination": "ChatGPT",
+    "format": "change brief",
+    "alert_threshold": "material change or execution failure"
+  }
+}

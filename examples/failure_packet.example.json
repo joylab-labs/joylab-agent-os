@@ -1,0 +1,25 @@
+{
+  "packet_version": "1.0",
+  "agent_id": "example-readonly-research",
+  "occurred_at": "2026-10-03T05:00:00Z",
+  "error": {
+    "code": "SOURCE_UNAVAILABLE",
+    "message": "Approved source could not be reached.",
+    "stage": "collect"
+  },
+  "last_success": {
+    "state": "Previous verified snapshot remains authoritative.",
+    "evidence": [
+      "snapshot://previous"
+    ]
+  },
+  "existing_artifacts": [
+    "snapshot://previous"
+  ],
+  "retry_possible": true,
+  "retry_count": 1,
+  "alternative_path": "Retry once, then escalate without replacing the last valid snapshot.",
+  "required_user_action": null,
+  "blocked_by": "source availability",
+  "notes": null
+}
