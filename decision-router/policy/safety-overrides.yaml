@@ -1,0 +1,15 @@
+version: 1
+human_required:
+  - destructive_production
+  - permanent_deletion
+  - credential_escalation
+  - permission_escalation
+  - irreversible_migration
+  - financial_action
+  - ambiguous_identity_merge
+  - official_record_confirmation
+hard_escalation:
+  database_migration: S4
+  backup_restore: S4
+  identity_permission_model_change: S4
+  production_data_transformation: S4
