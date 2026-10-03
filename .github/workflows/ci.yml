@@ -36,6 +36,7 @@ jobs:
         run: |
           python scripts/validate_agent_contracts.py examples/agent_contract.example.json
           python scripts/validate_agent_contracts.py --failure examples/failure_packet.example.json
+          python scripts/validate_agent_contracts.py --evidence examples/evidence_contract.example.json
 
   certification-gate:
     needs: test
