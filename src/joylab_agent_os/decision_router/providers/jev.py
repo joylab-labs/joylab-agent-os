@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Mapping
 
-from .models import DecisionRequest, ModelDecision
+from ..models import DecisionRequest, ModelDecision
 
 
 @dataclass(frozen=True)
