@@ -11,7 +11,29 @@ permissions:
   contents: read
 
 jobs:
+  decision-router-gold:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Router GOLD
+        run: |
+          pytest -q tests/test_decision_router_gold.py
+          python scripts/decision_router_release_gate.py
+
   release-gate:
+    needs: decision-router-gold
     uses: ohbeopseok-ops/ohbeopseok-ops/.github/workflows/joylab-release-gate-v1.yml@main
     with:
       working-directory: "."
