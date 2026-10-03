@@ -99,3 +99,29 @@ Validate examples or project contracts with:
 python scripts/validate_agent_contracts.py <agent-contract.json> [...]
 python scripts/validate_agent_contracts.py --failure <failure-packet.json> [...]
 ```
+
+## Evidence Contract V1
+
+Every instrumented runtime should emit an Evidence Contract that records:
+- which Agent Contract governed the run;
+- run identifier and timestamps;
+- required checks and their PASS / FAIL / MISSING state;
+- inspectable artifacts and hashes when available;
+- final outcome: PASS / BLOCKED / UNVERIFIED;
+- the Failure Packet path when the run is blocked.
+
+The canonical flow is:
+
+```text
+Agent Contract
+→ Runtime
+→ Evidence Contract
+→ deterministic gate
+→ PASS / BLOCKED
+```
+
+Use `scripts/run_with_evidence.py` to wrap bounded runtime commands. On command failure or missing required artifact, it writes both Evidence Contract and Failure Packet and returns a non-zero exit code.
+
+Canonical schema:
+- `schemas/evidence_contract.schema.json`
+

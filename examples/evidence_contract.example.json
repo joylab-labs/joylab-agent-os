@@ -1,0 +1,29 @@
+{
+  "contract_version": "1.0",
+  "agent_id": "example-readonly-research",
+  "run_id": "example-001",
+  "agent_contract_ref": "examples/agent_contract.example.json",
+  "started_at": "2026-10-03T06:00:00Z",
+  "completed_at": "2026-10-03T06:00:05Z",
+  "stage": "collect",
+  "outcome": "PASS",
+  "command_exit_code": 0,
+  "checks": [
+    {
+      "id": "command_exit",
+      "required": true,
+      "status": "PASS",
+      "detail": "exit_code=0"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "output/report.json",
+      "exists": true,
+      "size_bytes": 128,
+      "sha256": null
+    }
+  ],
+  "failure_packet": null,
+  "summary": "Runtime command and required evidence passed."
+}
