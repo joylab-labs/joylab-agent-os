@@ -123,6 +123,19 @@ class DecisionRouter:
                 reason="mandatory-s4-override",
             )
 
+        repeat_failures = int(state.get("repeat_failures", 0) or 0)
+        repeat_threshold = int(state.get("repeat_failure_threshold", 2) or 2)
+        if repeat_failures >= repeat_threshold:
+            return RouteDecision(
+                request.decision_id,
+                actual_route="ASTRA",
+                shadow_route=None,
+                authority="ASTRA",
+                confidence=None,
+                fallback_required=True,
+                reason="repeated-targeted-failure",
+            )
+
         if not request.allowed_outputs:
             return RouteDecision(
                 request.decision_id,
