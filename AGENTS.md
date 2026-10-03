@@ -297,3 +297,18 @@ For each rule, choose exactly one action:
 KEEP / MOVE / MERGE / DELETE / REWRITE.
 
 The goal is not the fewest tokens. The goal is the smallest instruction system that preserves required behavior, safety, quality, and reproducibility.
+
+## 14. Decision Router V1
+
+For bounded-decision routing, model selection, retry routing, failure triage,
+or Shadow Mode work, load `JOYLAB_DECISION_ROUTER_V1.md`.
+
+Rules:
+1. deterministic code owns exact gates before any model call;
+2. V1 Decision Router is SHADOW ONLY;
+3. Jev/model judgment cannot override S0-S4 mandatory escalation;
+4. Human authority boundaries remain unchanged;
+5. `FALSE_AUTONOMY == 0` is a hard release gate;
+6. promote decision types individually only after GOLD evidence.
+
+Do not duplicate project-specific deterministic gates inside the probabilistic router.

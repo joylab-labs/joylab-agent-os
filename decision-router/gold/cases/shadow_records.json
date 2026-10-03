@@ -1,0 +1,35 @@
+[
+  {
+    "decision_id": "GOLD_D010",
+    "decision_type": "shadow_isolation",
+    "input_hash": "fixture:d010",
+    "actual_route": "SOL",
+    "shadow_route": "inspect",
+    "confidence": 0.95,
+    "outcome": "PASS",
+    "timestamp": "2026-10-03T14:33:00+09:00",
+    "false_autonomy": 0
+  },
+  {
+    "decision_id": "GOLD_D013",
+    "decision_type": "human_authority",
+    "input_hash": "fixture:d013",
+    "actual_route": "HUMAN",
+    "shadow_route": null,
+    "confidence": null,
+    "outcome": "PASS",
+    "timestamp": "2026-10-03T14:33:00+09:00",
+    "false_autonomy": 0
+  },
+  {
+    "decision_id": "GOLD_D014",
+    "decision_type": "mandatory_escalation",
+    "input_hash": "fixture:d014",
+    "actual_route": "S4",
+    "shadow_route": null,
+    "confidence": null,
+    "outcome": "PASS",
+    "timestamp": "2026-10-03T14:33:00+09:00",
+    "false_autonomy": 0
+  }
+]

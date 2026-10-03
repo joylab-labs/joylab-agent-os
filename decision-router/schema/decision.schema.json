@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JoyLab Decision Request",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "decision_type",
+    "allowed_outputs",
+    "state",
+    "risk"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allowed_outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "state": {
+      "type": "object"
+    },
+    "risk": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

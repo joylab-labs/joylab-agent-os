@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JoyLab Route Decision",
+  "type": "object",
+  "required": [
+    "decision_id",
+    "actual_route",
+    "authority",
+    "fallback_required",
+    "false_autonomy"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string"
+    },
+    "actual_route": {
+      "type": "string"
+    },
+    "shadow_route": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "authority": {
+      "enum": [
+        "CODE",
+        "JEV",
+        "LUNA",
+        "SOL",
+        "ASTRA",
+        "HUMAN"
+      ]
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "fallback_required": {
+      "type": "boolean"
+    },
+    "false_autonomy": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": false
+}
