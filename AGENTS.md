@@ -312,3 +312,57 @@ Rules:
 6. promote decision types individually only after GOLD evidence.
 
 Do not duplicate project-specific deterministic gates inside the probabilistic router.
+
+## 15. Persistent-agent contract
+
+Persistent, recurring, delegated, or background-capable work must define:
+- responsibility and desired state
+- allowed inputs and relevant state
+- one primary trigger: Manual / Schedule / Event / Follow-up
+- allowed and prohibited actions
+- human-approval actions
+- completion evidence
+- failure/retry/escalation policy
+- stop/offboarding condition
+- reporting destination
+
+Do not treat a long prompt as an agent contract.
+
+Canonical machine-readable contract:
+- `schemas/agent_contract.schema.json`
+- detailed guidance: `docs/AGENT_ENGINEERING_STANDARD_V1.md`
+
+## 16. Permission boundary
+
+Connection does not imply permission.
+
+Distinguish:
+`CONNECTED → READ → WRITE → EXECUTE → PUBLISH/EXTERNAL SEND → DELETE/IRREVERSIBLE`
+
+Never infer missing permission from successful authentication. Project-specific rules may narrow these permissions further.
+
+## 17. Evidence and failure
+
+Execution status is not completion evidence.
+
+Use inspectable evidence when relevant: file, URL, commit, PR, test log, dataset, deployment result, or production check.
+
+Meaningful failures must preserve:
+- cause
+- last known good state
+- existing artifacts
+- retry state/count
+- alternative path
+- required user action
+
+Canonical runtime failure object:
+- `schemas/failure_packet.schema.json`
+
+Do not loop indefinitely or hide a failed delivery as "no change."
+
+## 18. Persistent-work shutdown
+
+Stopping the main task does not automatically stop delegated jobs, schedules/events, app access, local access, login sessions, or retained artifacts/context.
+
+For persistent work, define a verifiable stop/offboarding path before declaring the responsibility closed.
+

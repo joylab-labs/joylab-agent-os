@@ -1,0 +1,359 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aijoylab.kr/schemas/agent_contract.schema.json",
+  "title": "JoyLab Agent Contract V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "agent_id",
+    "responsibility",
+    "goal",
+    "inputs",
+    "state",
+    "trigger",
+    "actions",
+    "approval",
+    "evidence",
+    "failure_policy",
+    "stop",
+    "reporting"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "1.0"
+    },
+    "agent_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "responsibility": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "desired_state"
+      ],
+      "properties": {
+        "desired_state": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed_sources"
+      ],
+      "properties": {
+        "allowed_sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "excluded_sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "time_range": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "accounts_or_workspaces": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current_state_source"
+      ],
+      "properties": {
+        "current_state_source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "previous_state_source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "comparison_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "manual",
+            "schedule",
+            "event",
+            "follow_up"
+          ]
+        },
+        "timezone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "schedule": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "event_source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "event_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "registration_verified": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "follow_up_condition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "schedule"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "timezone",
+              "schedule"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "event"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "event_source",
+              "event_name",
+              "registration_verified"
+            ],
+            "properties": {
+              "registration_verified": {
+                "const": true
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "follow_up"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "follow_up_condition"
+            ]
+          }
+        }
+      ]
+    },
+    "actions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed",
+        "prohibited"
+      ],
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "prohibited": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_for"
+      ],
+      "properties": {
+        "required_for": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_outputs"
+      ],
+      "properties": {
+        "required_outputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "failure_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "retry_limit",
+        "escalation"
+      ],
+      "properties": {
+        "retry_limit": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "fallback": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "escalation": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "stop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conditions",
+        "offboarding"
+      ],
+      "properties": {
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "end_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "offboarding": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "reporting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "destination",
+        "format"
+      ],
+      "properties": {
+        "destination": {
+          "type": "string",
+          "minLength": 1
+        },
+        "format": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alert_threshold": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

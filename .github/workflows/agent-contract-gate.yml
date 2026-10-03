@@ -1,0 +1,52 @@
+name: Agent Contract Gate
+
+on:
+  workflow_call:
+    inputs:
+      contracts_glob:
+        description: "Glob of agent contract JSON files in caller repo"
+        required: false
+        type: string
+        default: "contracts/agents/*.json"
+      standard_ref:
+        description: "Immutable joylab-agent-os commit/tag containing canonical schemas"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  validate-agent-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout caller repository
+        uses: actions/checkout@v4
+        with:
+          path: workspace
+
+      - name: Checkout JoyLab Agent OS standard
+        uses: actions/checkout@v4
+        with:
+          repository: ohbeopseok-ops/joylab-agent-os
+          ref: ${{ inputs.standard_ref }}
+          path: standard
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validator dependency
+        run: python -m pip install "jsonschema>=4.23"
+
+      - name: Validate agent contracts
+        shell: bash
+        run: |
+          shopt -s nullglob
+          files=(workspace/${{ inputs.contracts_glob }})
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "BLOCKED: no agent contracts matched ${{ inputs.contracts_glob }}"
+            exit 2
+          fi
+          python standard/scripts/validate_agent_contracts.py "${files[@]}"

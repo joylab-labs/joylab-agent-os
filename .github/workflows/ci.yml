@@ -32,6 +32,11 @@ jobs:
       - name: Test
         run: pytest -q
 
+      - name: Validate agent contract examples
+        run: |
+          python scripts/validate_agent_contracts.py examples/agent_contract.example.json
+          python scripts/validate_agent_contracts.py --failure examples/failure_packet.example.json
+
   certification-gate:
     needs: test
     runs-on: ubuntu-latest
