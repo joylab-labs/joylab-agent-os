@@ -1,0 +1,15 @@
+name: Pilot Agent Contract Gold Test
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  agent-contract-gold:
+    uses: ./.github/workflows/agent-contract-gate.yml
+    with:
+      contracts_glob: "examples/agent_contract.example.json"
+      standard_ref: "12f90aa65201137e70e92328924caf1c4af2c497"
