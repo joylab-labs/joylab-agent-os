@@ -366,3 +366,21 @@ Stopping the main task does not automatically stop delegated jobs, schedules/eve
 
 For persistent work, define a verifiable stop/offboarding path before declaring the responsibility closed.
 
+## 19. Central repository governance SSOT
+
+JoyLab repository tier, required-check, and CI-budget policy is centrally defined in:
+
+- `ohbeopseok-ops/joylab-publishing-os/config/repository-registry.json`
+- `ohbeopseok-ops/joylab-publishing-os/docs/operations/repository-tier-policy-v1.md`
+- `ohbeopseok-ops/joylab-publishing-os/docs/operations/joylab-release-rule-v1.md`
+
+Do not duplicate the registry contents in this repository.
+
+Before changing GitHub Actions, scheduled workflows, merge rules, or CI fan-out for a JoyLab repository:
+1. resolve that repository's tier from the central registry;
+2. apply the central numeric limits and required-check rules;
+3. prefer repository-local `AGENTS.md` only for stricter project-specific constraints;
+4. if the central registry is missing or stale, update the central SSOT first rather than inventing a local tier;
+5. do not weaken a central rule locally.
+
+Central policy owns repository classification. This Agent OS owns reusable execution behavior.
