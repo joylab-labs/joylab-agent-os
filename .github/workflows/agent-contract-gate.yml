@@ -28,7 +28,7 @@ jobs:
       - name: Checkout JoyLab Agent OS standard
         uses: actions/checkout@v4
         with:
-          repository: ohbeopseok-ops/joylab-agent-os
+          repository: joylab-labs/joylab-agent-os
           ref: ${{ inputs.standard_ref }}
           path: standard
 
