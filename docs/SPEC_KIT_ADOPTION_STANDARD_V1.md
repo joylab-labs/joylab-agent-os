@@ -1,6 +1,6 @@
 # JoyLab Spec Kit Adoption Standard V1.0
 
-Status: PROPOSED — merge only after review
+Status: ADOPTED — documentation standard; actual agent integration and per-project runtime gates remain separately verified
 Owner: JoyLab Agent OS
 Reference: https://github.com/github/spec-kit
 
